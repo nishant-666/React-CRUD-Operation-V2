@@ -13,7 +13,7 @@ function App() {
           <Route exact path='/create' component={Create} />
         </div>
         <div style={{ marginTop: 20 }}>
-          <Route exact path='/read' component={Read} />
+          <Route exact path='/' component={Read} />
         </div>
 
         <Route path='/update' component={Update} />
