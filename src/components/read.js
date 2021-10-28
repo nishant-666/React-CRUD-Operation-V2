@@ -51,7 +51,7 @@ export default function Read() {
                 <Table.Body>
                     {APIData.map((data) => {
                         return (
-                            <Table.Row>
+                            <Table.Row key={data.id}>
                                 <Table.Cell>{data.firstName}</Table.Cell>
                                 <Table.Cell>{data.lastName}</Table.Cell>
                                 <Table.Cell>{data.checkbox ? 'Checked' : 'Unchecked'}</Table.Cell>
