@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Button, Checkbox, Form } from 'semantic-ui-react'
 import axios from 'axios';
 import { useHistory } from 'react-router';
+import { Link } from 'react-router-dom';
 
 export default function Update() {
     let history = useHistory();
@@ -14,7 +15,7 @@ export default function Update() {
         setID(localStorage.getItem('ID'))
         setFirstName(localStorage.getItem('First Name'));
         setLastName(localStorage.getItem('Last Name'));
-        setCheckbox(localStorage.getItem('Checkbox Value'));
+        setCheckbox(localStorage.getItem('Checkbox Value')  === 'true' ? true : false)
     }, []);
 
     const updateAPIData = () => {
@@ -23,24 +24,29 @@ export default function Update() {
             lastName,
             checkbox
         }).then(() => {
-            history.push('/read')
+            history.push('/')
         })
     }
     return (
         <div>
+            <div style={{ marginTop: 20,marginBottom: 20 }}>
+                <Link to="/">
+                    <Button color='violet'>Home</Button>
+                </Link>
+            </div>
             <Form className="create-form">
                 <Form.Field>
                     <label>First Name</label>
-                    <input placeholder='First Name' value={firstName} onChange={(e) => setFirstName(e.target.value)}/>
+                    <input placeholder='First Name' value={firstName} onChange={(e) => setFirstName(e.target.value)} />
                 </Form.Field>
                 <Form.Field>
                     <label>Last Name</label>
-                    <input placeholder='Last Name' value={lastName} onChange={(e) => setLastName(e.target.value)}/>
+                    <input placeholder='Last Name' value={lastName} onChange={(e) => setLastName(e.target.value)} />
                 </Form.Field>
                 <Form.Field>
-                    <Checkbox label='I agree to the Terms and Conditions' checked={checkbox} onChange={() => setCheckbox(!checkbox)}/>
+                    <Checkbox label='I agree to the Terms and Conditions' checked={checkbox} onChange={() => setCheckbox(!checkbox)} />
                 </Form.Field>
-                <Button type='submit' onClick={updateAPIData}>Update</Button>
+                <Button color="green" type='submit' onClick={updateAPIData}>Update</Button>
             </Form>
         </div>
     )
