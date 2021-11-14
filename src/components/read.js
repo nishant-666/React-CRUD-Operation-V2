@@ -55,11 +55,11 @@ export default function Read() {
                                 <Table.Cell>{data.firstName}</Table.Cell>
                                 <Table.Cell>{data.lastName}</Table.Cell>
                                 <Table.Cell>{data.checkbox ? 'Checked' : 'Unchecked'}</Table.Cell>
-                                <Link to='/update'>
-                                    <Table.Cell> 
+                                <Table.Cell>
+                                    <Link to='/update'>
                                         <Button onClick={() => setData(data)}>Update</Button>
-                                    </Table.Cell>
-                                </Link>
+                                    </Link>
+                                </Table.Cell>
                                 <Table.Cell>
                                     <Button onClick={() => onDelete(data.id)}>Delete</Button>
                                 </Table.Cell>
