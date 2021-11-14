@@ -14,7 +14,7 @@ export default function Update() {
         setID(localStorage.getItem('ID'))
         setFirstName(localStorage.getItem('First Name'));
         setLastName(localStorage.getItem('Last Name'));
-        setCheckbox(localStorage.getItem('Checkbox Value'));
+        setCheckbox(localStorage.getItem('Checkbox Value')  === 'true' ? true : false)
     }, []);
 
     const updateAPIData = () => {
