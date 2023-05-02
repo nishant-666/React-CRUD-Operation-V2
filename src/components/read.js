@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { Table, Button } from 'semantic-ui-react';
+import { Table, Button, TableCell } from 'semantic-ui-react';
 import { Link } from 'react-router-dom';
 
 export default function Read() {
@@ -30,16 +30,22 @@ export default function Read() {
 
     const onDelete = (id) => {
         axios.delete(`https://60fbca4591156a0017b4c8a7.mockapi.io/fakeData/${id}`)
-        .then(() => {
-            getData();
-        })
+            .then(() => {
+                getData();
+            })
     }
 
     return (
         <div>
+            <div style={{ marginTop: 20 }}>
+                <Link to="/create">
+                    <Button color='violet'>Create New</Button>
+                </Link>
+            </div>
             <Table singleLine>
                 <Table.Header>
                     <Table.Row>
+                    <Table.HeaderCell>ID</Table.HeaderCell>
                         <Table.HeaderCell>First Name</Table.HeaderCell>
                         <Table.HeaderCell>Last Name</Table.HeaderCell>
                         <Table.HeaderCell>Checkbox Value</Table.HeaderCell>
@@ -51,17 +57,18 @@ export default function Read() {
                 <Table.Body>
                     {APIData.map((data) => {
                         return (
-                            <Table.Row>
+                            <Table.Row key={data.id}>
+                                <TableCell>{data.id}</TableCell>
                                 <Table.Cell>{data.firstName}</Table.Cell>
                                 <Table.Cell>{data.lastName}</Table.Cell>
                                 <Table.Cell>{data.checkbox ? 'Checked' : 'Unchecked'}</Table.Cell>
-                                <Link to='/update'>
-                                    <Table.Cell> 
-                                        <Button onClick={() => setData(data)}>Update</Button>
-                                    </Table.Cell>
-                                </Link>
                                 <Table.Cell>
-                                    <Button onClick={() => onDelete(data.id)}>Delete</Button>
+                                    <Link to='/update'>
+                                        <Button color="blue" onClick={() => setData(data)}>Update</Button>
+                                    </Link>
+                                </Table.Cell>
+                                <Table.Cell>
+                                    <Button color="red" onClick={() => onDelete(data.id)}>Delete</Button>
                                 </Table.Cell>
                             </Table.Row>
                         )
