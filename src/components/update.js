@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Checkbox, Form } from 'semantic-ui-react'
 import axios from 'axios';
-import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 export default function Update() {
-    let history = useHistory();
+    let navigate = useNavigate();
     const [id, setID] = useState(null);
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -24,7 +24,7 @@ export default function Update() {
             lastName,
             checkbox
         }).then(() => {
-            history.push('/')
+            navigate.push('/read')
         })
     }
     return (
